@@ -15,6 +15,8 @@ class Cell extends Component {
     }
 
     handleClick = () => {
+        if (this.props.bombs === 9)
+            alert("You lose.");
         this.setState({ revealed: true });
     }
 }

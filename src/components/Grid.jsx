@@ -10,13 +10,14 @@ class Grid extends Component {
     };
 
     board = [...Array(this.state.width * this.state.height)];
+    children = [...Array(this.state.width * this.state.height)];
 
     constructor() {
         super();
         let bombsRemaining = this.state.bombCount;
         while (bombsRemaining) {
-            let row = Math.floor((Math.random() * this.state.width));
-            let col = Math.floor((Math.random() * this.state.height));
+            let row = Math.floor((Math.random() * this.state.height));
+            let col = Math.floor((Math.random() * this.state.width));
 
             let index = row * this.state.width + col;
 
@@ -29,9 +30,6 @@ class Grid extends Component {
         let x, y;
         for (y = 0; y < this.state.height; y++) {
             for (x = 0; x < this.state.width; x++) {
-                if (this.board[y * this.state.width + x] === 9)
-                    continue;
-
                 let topleftIdx = x === 0 || y === 0 ? -1 : (y - 1) * this.state.width + x - 1;
                 let topIdx = y === 0 ? -1 : (y - 1) * this.state.width + x;
                 let topRightIdx = x === this.state.width - 1 || y === 0 ? -1 : (y - 1) * this.state.width + x + 1;
@@ -52,27 +50,20 @@ class Grid extends Component {
                 count += (this.board[bottomLeftIdx] === 9) * (bottomLeftIdx !== -1)
                 count += (this.board[leftIdx] === 9) * (leftIdx !== -1)
 
-                this.board[y * this.state.width + x] = count;
+                const idx = y * this.state.width + x;
+
+                this.board[idx] = this.board[idx] === 9 ? 9 : count;
+                this.children[idx] = <Cell key={idx} bombs={count} />
             }
         }
     }
 
     render() {
-        const ids = [];
-        let w, h;
-        for (h = 0; h < this.state.height; h++) {
-            ids.push([]);
-            for (w = 0; w < this.state.width; w++) {
-                ids[h].push(h * this.state.width + w);
-            }
-        }
-        console.log(this.board);
-        return <div className="grid" onClick={this.handleClick}>{ids.map((row) =>
-            <div className="row" key={row[0]} >{row.map((id) =>
-                < Cell key={id} bombs={this.board[id]} />
-            )
-            }</div>)
-        }</div>;
+        const gridStyle = {
+            "grid-template-columns": "auto ".repeat(this.state.width)
+        };
+
+        return <div style={gridStyle} className="grid" onClick={this.handleClick}>{this.children}</div>
     }
 }
 
