@@ -4,14 +4,13 @@ import './Cell.css';
 class Cell extends Component {
     state = {
         revealed: false,
-        bombs: 0
     };
 
     render() {
-        const c = [``, ` one`, ` two`, ` three`, ` four`, ` five`, ` six`, ` seven`, ` eight`, ``];
+        const c = [``, ` one`, ` two`, ` three`, ` four`, ` five`, ` six`, ` seven`, ` eight`, ` bomb`];
         if (!this.state.revealed)
             return <div className="Cell" onClick={this.handleClick}><p>{this.props.bombs}</p></div>;
-
+        console.log(this.props.bombs);
         return <div className={`revealed` + c[this.props.bombs]} onClick={this.handleClick}><p>{this.props.bombs}</p></div>;
     }
 

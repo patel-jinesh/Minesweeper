@@ -55,49 +55,48 @@
     transition: 0.5;
     background-color: rgb(22, 201, 96);
     border: 1px rgb(22, 201, 96) solid;
-
 }
 
 .three {
     transition: 0.5;
     background-color: rgb(255, 70, 70);
     border: 1px  rgb(255, 70, 70) solid;
-
 }
 
 .four {
     transition: 0.5;
     background-color: rgb(225, 0, 255);
     border: 1px  rgb(225, 0, 255) solid;
-
 }
 
 .five {
     transition: 0.5;
     background-color: rgb(163, 0, 68);
     border: 1px  rgb(163, 0, 68) solid;
-
 }
 
 .six {
     transition: 0.5;
     background-color: rgb(0, 155, 155);
     border: 1px  rgb(0, 155, 155) solid;
-
 }
 
 .seven {
     transition: 0.5;
     background-color: rgb(0, 0, 0);
     border: 1px  rgb(0, 0, 0) solid;
-
 }
 
 .eight {
     transition: 0.5;
     background-color: rgb(122, 122, 122);
     border: 1px  rgb(122, 122, 122) solid;
+}
 
+.bomb {
+    transition: 0.5s;
+    background-color: rgb(255, 217, 0);
+    border: 1px  rgb(255, 217, 0) solid;
 }
 
 /* Standard syntax */   
