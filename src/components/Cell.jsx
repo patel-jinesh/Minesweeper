@@ -10,7 +10,7 @@ class Cell extends Component {
         const c = [``, ` one`, ` two`, ` three`, ` four`, ` five`, ` six`, ` seven`, ` eight`, ` bomb`];
         if (!this.state.revealed)
             return <div className="Cell" onClick={this.handleClick}><p>{this.props.bombs}</p></div>;
-        console.log(this.props.bombs);
+
         return <div className={`revealed` + c[this.props.bombs]} onClick={this.handleClick}><p>{this.props.bombs}</p></div>;
     }
 
