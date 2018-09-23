@@ -18,7 +18,11 @@ class Grid extends Component {
             }
         }
         console.log(ids);
-        return <div>{ids.map((row) => <div className="row" key={row[0]} > {row.map((id) => <Cell key={id} />)}</div>)}</div>;
+        return <div className="grid">{ids.map((row) =>
+            <div className="row" key={row[0]} >{row.map((id) =>
+                <Cell key={id} bombs={Math.floor((Math.random() * 10))} />)
+            }</div>)
+        }</div>;
     }
 }
 

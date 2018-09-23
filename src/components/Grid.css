@@ -1,5 +1,9 @@
 .row {
     display: flex;
     flex-direction: row;
-    
+    justify-content: center;
+}
+
+.grid {
+    margin: 24px;
 }

@@ -1,7 +1,115 @@
 .Cell {
-    width: 32px;
-    height: 32px;
-    margin: 0px;
+    width: 24px;
+    height: 24px;
+    margin: 3px;
+    background-color: white;
+    color: white;
     padding: 0px;
-    border: 1px black solid;
+    border: 1px grey solid;
+    border-radius: 5px;
+    filter: drop-shadow(0px 3px 0px #222222);
+    cursor: pointer;
+}
+
+.revealed {
+    width: 24px;
+    height: 24px;
+    margin: 3px;
+    padding: 0px;
+    border: 1px grey solid;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 6px;
+    margin-bottom: 0px;
+    animation-name: click;
+    animation-duration: 0.5s;
+    background: white;
+    color: white;
+    overflow: hidden;
+}
+
+.Cell p {
+    opacity: 0;
+    color: white;
+    transition: 0.5s;
+}
+
+.revealed p {
+    opacity: 1;
+    transition: 0.5s;
+    color: white;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    margin: 0px;
+}
+
+.one {
+    transition: 0.5;
+    background-color: rgb(49, 145, 255);
+    border: 1px rgb(49, 145, 255) solid;
+}
+
+.two {
+    transition: 0.5;
+    background-color: rgb(22, 201, 96);
+    border: 1px rgb(22, 201, 96) solid;
+
+}
+
+.three {
+    transition: 0.5;
+    background-color: rgb(255, 70, 70);
+    border: 1px  rgb(255, 70, 70) solid;
+
+}
+
+.four {
+    transition: 0.5;
+    background-color: rgb(225, 0, 255);
+    border: 1px  rgb(225, 0, 255) solid;
+
+}
+
+.five {
+    transition: 0.5;
+    background-color: rgb(163, 0, 68);
+    border: 1px  rgb(163, 0, 68) solid;
+
+}
+
+.six {
+    transition: 0.5;
+    background-color: rgb(0, 155, 155);
+    border: 1px  rgb(0, 155, 155) solid;
+
+}
+
+.seven {
+    transition: 0.5;
+    background-color: rgb(0, 0, 0);
+    border: 1px  rgb(0, 0, 0) solid;
+
+}
+
+.eight {
+    transition: 0.5;
+    background-color: rgb(122, 122, 122);
+    border: 1px  rgb(122, 122, 122) solid;
+
+}
+
+/* Standard syntax */   
+@keyframes click {
+    from {
+        filter: drop-shadow(0px 3px 0px #222222);
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+    to {
+        filter: drop-shadow(0px 0px 0px #222222);
+        margin-top: 6px;
+        margin-bottom: 0px;
+    }
 }

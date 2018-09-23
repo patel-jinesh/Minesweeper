@@ -8,7 +8,15 @@ class Cell extends Component {
     };
 
     render() {
-        return <div className="Cell"></div>;
+        const c = [``, ` one`, ` two`, ` three`, ` four`, ` five`, ` six`, ` seven`, ` eight`, ``];
+        if (!this.state.revealed)
+            return <div className="Cell" onClick={this.handleClick}><p>{this.props.bombs}</p></div>;
+
+        return <div className={`revealed` + c[this.props.bombs]} onClick={this.handleClick}><p>{this.props.bombs}</p></div>;
+    }
+
+    handleClick = () => {
+        this.setState({ revealed: true });
     }
 }
 
