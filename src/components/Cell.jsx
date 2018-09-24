@@ -41,11 +41,21 @@ class Cell extends Component {
     reveal = () => {
 >>>>>>> edf27f8... added reveal on number click
         if (!this.state.flagged)
-            this.setState({ revealed: true });
+            this.setState({ revealed: true }, this.changed);
+    }
+
+    changed = () => {
+        if (this.props.bombs === 0) {
+            this.props.reveal(this.props.id);
+        }
     }
 
     flagged = () => {
         return this.state.flagged;
+    }
+
+    revealed = () => {
+        return this.state.revealed;
     }
 
     handleRightClick = () => {

@@ -116,24 +116,32 @@ class Grid extends Component {
         let bottomLeftIdx = x === 0 || y === this.state.height - 1 ? - 1 : (y + 1) * this.state.width + x - 1;
         let leftIdx = x === 0 ? -1 : y * this.state.width + x - 1;
 
-        count += (this.state.references[topleftIdx].flagged()) * (topleftIdx !== -1);
-        count += (this.state.references[topIdx].flagged()) * (topIdx !== -1);
-        count += (this.state.references[topRightIdx].flagged()) * (topRightIdx !== -1);
-        count += (this.state.references[rightIdx].flagged()) * (rightIdx !== -1);
-        count += (this.state.references[bottomRightIdx].flagged()) * (bottomRightIdx !== -1);
-        count += (this.state.references[bottomIdx].flagged()) * (bottomIdx !== -1);
-        count += (this.state.references[bottomLeftIdx].flagged()) * (bottomLeftIdx !== -1);
-        count += (this.state.references[leftIdx].flagged()) * (leftIdx !== -1);
+        count += (topleftIdx === -1) ? 0 : (this.state.references[topleftIdx].flagged());
+        count += (topIdx === -1) ? 0 : (this.state.references[topIdx].flagged());
+        count += (topRightIdx === -1) ? 0 : (this.state.references[topRightIdx].flagged());
+        count += (rightIdx === -1) ? 0 : (this.state.references[rightIdx].flagged());
+        count += (bottomRightIdx === -1) ? 0 : (this.state.references[bottomRightIdx].flagged());
+        count += (bottomIdx === -1) ? 0 : (this.state.references[bottomIdx].flagged());
+        count += (bottomLeftIdx === -1) ? 0 : (this.state.references[bottomLeftIdx].flagged());
+        count += (leftIdx === -1) ? 0 : (this.state.references[leftIdx].flagged());
 
-        if (this.state.board[id] === count) {
-            this.state.references[topleftIdx].reveal();
-            this.state.references[topIdx].reveal();
-            this.state.references[topRightIdx].reveal();
-            this.state.references[rightIdx].reveal();
-            this.state.references[bottomRightIdx].reveal();
-            this.state.references[bottomIdx].reveal();
-            this.state.references[bottomLeftIdx].reveal();
-            this.state.references[leftIdx].reveal();
+        if (this.state.board[id] === 0 || this.state.board[id] === count) {
+            if (topleftIdx !== -1 && !this.state.references[topleftIdx].revealed())
+                this.state.references[topleftIdx].reveal();
+            if (topIdx !== -1 && !this.state.references[topIdx].revealed())
+                this.state.references[topIdx].reveal();
+            if (topRightIdx !== -1 && !this.state.references[topRightIdx].revealed())
+                this.state.references[topRightIdx].reveal();
+            if (rightIdx !== -1 && !this.state.references[rightIdx].revealed())
+                this.state.references[rightIdx].reveal();
+            if (bottomRightIdx !== -1 && !this.state.references[bottomRightIdx].revealed())
+                this.state.references[bottomRightIdx].reveal();
+            if (bottomIdx !== -1 && !this.state.references[bottomIdx].revealed())
+                this.state.references[bottomIdx].reveal();
+            if (bottomLeftIdx !== -1 && !this.state.references[bottomLeftIdx].revealed())
+                this.state.references[bottomLeftIdx].reveal();
+            if (leftIdx !== -1 && !this.state.references[leftIdx].revealed())
+                this.state.references[leftIdx].reveal();
         }
     }
 
