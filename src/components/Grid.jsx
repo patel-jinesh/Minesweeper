@@ -69,8 +69,13 @@ class Grid extends Component {
         }
     }
 
-    gameOver = () => {
-        this.handleClick();
+    gameOver = (idx) => {
+        if (this.t !== undefined)
+            return;
+
+        let y = Math.floor(idx / this.state.width);
+        let x = idx % this.state.width;
+        this.t = setInterval(this.show.bind(null, x, y), 200);
     }
 
     reveal = (id) => {
@@ -117,22 +122,46 @@ class Grid extends Component {
         }
     }
 
-    handleClick = () => {
-        this.id = setInterval(this.r, 0)
-    }
-
-    r = () => {
-        if (this.idx === undefined)
-            this.idx = 1;
+    show = (x, y) => {
+        if (this.r === undefined)
+            this.r = 1;
         else
-            this.idx += 1;
+            this.r += 1;
 
-        if (this.idx === this.state.width * this.state.height) {
-            clearInterval(this.id);
+        let left = x + 1;
+        let top = y + 1;
+        let right = this.state.width - x;
+        let bottom = this.state.height - y;
+
+        let m = Math.max(left, top, right, bottom);
+
+        if (this.r === m) {
+            clearInterval(this.t);
             return;
         }
 
-        this.state.references[this.idx].setState({ revealed: true });
+        let xtl = x - this.r;
+        let ytl = y - this.r;
+        let xbr = x + this.r;
+        let ybr = y + this.r;
+
+        for (let i = xtl; i <= xbr; i++) {
+            if (i >= 0 && i < this.state.width) {
+                if (ytl >= 0)
+                    this.state.references[ytl * this.state.width + i].setState({ revealed: true });
+                if (ybr < this.state.height)
+                    this.state.references[ybr * this.state.width + i].setState({ revealed: true });
+            }
+        }
+
+        for (let i = ytl; i <= ybr; i++) {
+            if (i >= 0 && i < this.state.height) {
+                if (xtl >= 0)
+                    this.state.references[i * this.state.width + xtl].setState({ revealed: true });
+                if (xbr < this.state.width)
+                    this.state.references[i * this.state.width + xbr].setState({ revealed: true });
+            }
+        }
     }
 
     render() {

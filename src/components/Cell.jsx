@@ -43,7 +43,7 @@ class Cell extends Component {
         if (!this.state.flagged)
             this.setState({ revealed: true }, this.changed);
         if (this.props.bombs === 9)
-            this.props.gameOver();
+            this.props.gameOver(this.props.id);
     }
 
     changed = () => {
