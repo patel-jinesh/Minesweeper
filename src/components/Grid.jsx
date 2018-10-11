@@ -13,16 +13,6 @@ class Grid extends Component {
         flagged: []
     };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    board = [...Array(this.state.width * this.state.height)];
-    children = [...Array(this.state.width * this.state.height)];
-=======
-    board
->>>>>>> dad111a... refactored cell generation
-
-=======
->>>>>>> 213f136... added title, bomb icon, and started game over detection.
     constructor() {
         super();
 
@@ -47,12 +37,9 @@ class Grid extends Component {
         let x, y;
         for (y = 0; y < this.state.height; y++) {
             for (x = 0; x < this.state.width; x++) {
-<<<<<<< HEAD
-=======
                 //if (this.state.board[y * this.state.width + x] === 9)
                 //continue;
 
->>>>>>> dad111a... refactored cell generation
                 let topleftIdx = x === 0 || y === 0 ? -1 : (y - 1) * this.state.width + x - 1;
                 let topIdx = y === 0 ? -1 : (y - 1) * this.state.width + x;
                 let topRightIdx = x === this.state.width - 1 || y === 0 ? -1 : (y - 1) * this.state.width + x + 1;
@@ -73,30 +60,11 @@ class Grid extends Component {
                 count += (this.state.board[bottomLeftIdx] === 9) * (bottomLeftIdx !== -1);
                 count += (this.state.board[leftIdx] === 9) * (leftIdx !== -1);
 
-                let idx = y * this.state.width + x;
-
-<<<<<<< HEAD
                 const idx = y * this.state.width + x;
 
-                this.board[idx] = this.board[idx] === 9 ? 9 : count;
-                this.children[idx] = <Cell key={idx} bombs={count} />
-=======
                 this.state.board[idx] = this.state.board[idx] === 9 ? 9 : count;
-<<<<<<< HEAD
-<<<<<<< HEAD
-                this.state.cells[idx] = <Cell key={idx} bombs={this.state.board[idx]} />
->>>>>>> dad111a... refactored cell generation
-=======
-                this.state.cells[idx] = <Cell reveal={this.reveal} onRef={ref => (this.state.references[idx] = ref)} key={idx} bombs={this.state.board[idx]} />
->>>>>>> 8347533... added flagging mechanism
-=======
                 this.state.flagged[idx] = false;
-<<<<<<< HEAD
-                this.state.cells[idx] = <Cell id={idx} reveal={this.reveal} onRef={ref => (this.state.references[idx] = ref)} key={idx} bombs={this.state.board[idx]} />
->>>>>>> edf27f8... added reveal on number click
-=======
                 this.state.cells[idx] = <Cell id={idx} gameOver={this.gameOver} reveal={this.reveal} onRef={ref => (this.state.references[idx] = ref)} key={idx} bombs={this.state.board[idx]} />
->>>>>>> 213f136... added title, bomb icon, and started game over detection.
             }
         }
     }
@@ -154,10 +122,10 @@ class Grid extends Component {
     }
 
     r = () => {
-        if (this.r === undefined)
-            this.r = 1;
+        if (this.idx === undefined)
+            this.idx = 1;
         else
-            this.r += 1;
+            this.idx += 1;
 
         if (this.idx === this.state.width * this.state.height) {
             clearInterval(this.id);
@@ -168,26 +136,10 @@ class Grid extends Component {
     }
 
     render() {
-<<<<<<< HEAD
-        const gridStyle = {
-            "grid-template-columns": "auto ".repeat(this.state.width)
-        };
-
-        return <div style={gridStyle} className="grid" onClick={this.handleClick}>{this.children}</div>
-=======
         const divstyle = {
             gridTemplateColumns: 'auto '.repeat(this.state.width),
         };
-<<<<<<< HEAD
-<<<<<<< HEAD
         return <div style={divstyle} className="grid" >{this.state.cells}</div>;
->>>>>>> dad111a... refactored cell generation
-=======
-        return <div style={divstyle} onClick={this.handleClick} className="grid" >{this.state.cells}</div>;
->>>>>>> 8347533... added flagging mechanism
-=======
-        return <div style={divstyle} className="grid" >{this.state.cells}</div>;
->>>>>>> 213f136... added title, bomb icon, and started game over detection.
     }
 }
 

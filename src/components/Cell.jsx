@@ -34,20 +34,12 @@ class Cell extends Component {
     }
 
     handleClick = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (this.props.bombs === 9)
-            alert("You lose.");
-        this.setState({ revealed: true });
-=======
-=======
         this.reveal();
         if (this.state.revealed)
             this.props.reveal(this.props.id);
     }
 
     reveal = () => {
->>>>>>> edf27f8... added reveal on number click
         if (!this.state.flagged)
             this.setState({ revealed: true }, this.changed);
         if (this.props.bombs === 9)
@@ -72,7 +64,6 @@ class Cell extends Component {
         if (!this.state.revealed) {
             this.setState({ flagged: !this.state.flagged });
         }
->>>>>>> 8347533... added flagging mechanism
     }
 }
 
