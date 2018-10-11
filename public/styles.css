@@ -1,0 +1,10 @@
+html, body {
+    background-color: #cccccc;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+}

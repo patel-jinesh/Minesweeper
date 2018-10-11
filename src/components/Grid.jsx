@@ -14,12 +14,15 @@ class Grid extends Component {
     };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     board = [...Array(this.state.width * this.state.height)];
     children = [...Array(this.state.width * this.state.height)];
 =======
     board
 >>>>>>> dad111a... refactored cell generation
 
+=======
+>>>>>>> 213f136... added title, bomb icon, and started game over detection.
     constructor() {
         super();
 
@@ -88,17 +91,18 @@ class Grid extends Component {
 >>>>>>> 8347533... added flagging mechanism
 =======
                 this.state.flagged[idx] = false;
+<<<<<<< HEAD
                 this.state.cells[idx] = <Cell id={idx} reveal={this.reveal} onRef={ref => (this.state.references[idx] = ref)} key={idx} bombs={this.state.board[idx]} />
 >>>>>>> edf27f8... added reveal on number click
+=======
+                this.state.cells[idx] = <Cell id={idx} gameOver={this.gameOver} reveal={this.reveal} onRef={ref => (this.state.references[idx] = ref)} key={idx} bombs={this.state.board[idx]} />
+>>>>>>> 213f136... added title, bomb icon, and started game over detection.
             }
         }
     }
 
-    handleClick = () => {
-        for (let c of this.state.references) {
-            //console.log(c);
-            //c.handleClick();
-        }
+    gameOver = () => {
+        this.handleClick();
     }
 
     reveal = (id) => {
@@ -145,6 +149,24 @@ class Grid extends Component {
         }
     }
 
+    handleClick = () => {
+        this.id = setInterval(this.r, 0)
+    }
+
+    r = () => {
+        if (this.r === undefined)
+            this.r = 1;
+        else
+            this.r += 1;
+
+        if (this.idx === this.state.width * this.state.height) {
+            clearInterval(this.id);
+            return;
+        }
+
+        this.state.references[this.idx].setState({ revealed: true });
+    }
+
     render() {
 <<<<<<< HEAD
         const gridStyle = {
@@ -157,11 +179,15 @@ class Grid extends Component {
             gridTemplateColumns: 'auto '.repeat(this.state.width),
         };
 <<<<<<< HEAD
+<<<<<<< HEAD
         return <div style={divstyle} className="grid" >{this.state.cells}</div>;
 >>>>>>> dad111a... refactored cell generation
 =======
         return <div style={divstyle} onClick={this.handleClick} className="grid" >{this.state.cells}</div>;
 >>>>>>> 8347533... added flagging mechanism
+=======
+        return <div style={divstyle} className="grid" >{this.state.cells}</div>;
+>>>>>>> 213f136... added title, bomb icon, and started game over detection.
     }
 }
 

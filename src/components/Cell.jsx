@@ -17,12 +17,20 @@ class Cell extends Component {
     render() {
         const c = [``, ` one`, ` two`, ` three`, ` four`, ` five`, ` six`, ` seven`, ` eight`, ` bomb`];
 
-        if (!this.state.revealed && this.state.flagged)
-            return <div className="flagged" onClick={this.handleClick} onContextMenu={(e) => { e.preventDefault(); this.handleRightClick(); }}><p>{this.props.bombs}</p></div>;
-        if (!this.state.revealed)
-            return <div className="Cell" onClick={this.handleClick} onContextMenu={(e) => { e.preventDefault(); this.handleRightClick(); }}><p>{this.props.bombs}</p></div>;
+        let className = ``;
 
-        return <div className={`revealed` + c[this.props.bombs]} onClick={this.handleClick} onContextMenu={(e) => { e.preventDefault(); this.handleRightClick(); }}><p>{this.props.bombs}</p></div>;
+        if (!this.state.revealed && this.state.flagged)
+            className = `flagged`;
+        else if (!this.state.revealed)
+            className = `Cell`;
+        else
+            className = `revealed` + c[this.props.bombs];
+
+        if (this.props.bombs === 9)
+            return <div className={className} onClick={this.handleClick} onContextMenu={(e) => { e.preventDefault(); this.handleRightClick(); }}><p></p></div>;
+
+
+        return <div className={className} onClick={this.handleClick} onContextMenu={(e) => { e.preventDefault(); this.handleRightClick(); }}><p>{this.props.bombs}</p></div>;
     }
 
     handleClick = () => {
@@ -42,6 +50,8 @@ class Cell extends Component {
 >>>>>>> edf27f8... added reveal on number click
         if (!this.state.flagged)
             this.setState({ revealed: true }, this.changed);
+        if (this.props.bombs === 9)
+            this.props.gameOver();
     }
 
     changed = () => {
