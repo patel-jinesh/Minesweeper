@@ -8,7 +8,8 @@ class Grid extends Component {
         height: 15,
         bombCount: 100,
         board: [],
-        cells: []
+        cells: [],
+        references: []
     };
 
 <<<<<<< HEAD
@@ -23,6 +24,7 @@ class Grid extends Component {
 
         this.state.board = [...Array(this.state.width * this.state.height)];
         this.state.cells = [...Array(this.state.width * this.state.height)];
+        this.state.references = [...Array(this.state.width * this.state.height)];
 
         let bombsRemaining = this.state.bombCount;
         while (bombsRemaining) {
@@ -75,10 +77,25 @@ class Grid extends Component {
                 this.children[idx] = <Cell key={idx} bombs={count} />
 =======
                 this.state.board[idx] = this.state.board[idx] === 9 ? 9 : count;
+<<<<<<< HEAD
                 this.state.cells[idx] = <Cell key={idx} bombs={this.state.board[idx]} />
 >>>>>>> dad111a... refactored cell generation
+=======
+                this.state.cells[idx] = <Cell reveal={this.reveal} onRef={ref => (this.state.references[idx] = ref)} key={idx} bombs={this.state.board[idx]} />
+>>>>>>> 8347533... added flagging mechanism
             }
         }
+    }
+
+    handleClick = () => {
+        for (let c of this.state.references) {
+            //console.log(c);
+            //c.handleClick();
+        }
+    }
+
+    reveal = () => {
+        console.log('hit');
     }
 
     render() {
@@ -92,8 +109,12 @@ class Grid extends Component {
         const divstyle = {
             gridTemplateColumns: 'auto '.repeat(this.state.width),
         };
+<<<<<<< HEAD
         return <div style={divstyle} className="grid" >{this.state.cells}</div>;
 >>>>>>> dad111a... refactored cell generation
+=======
+        return <div style={divstyle} onClick={this.handleClick} className="grid" >{this.state.cells}</div>;
+>>>>>>> 8347533... added flagging mechanism
     }
 }
 

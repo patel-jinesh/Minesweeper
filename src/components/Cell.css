@@ -8,6 +8,7 @@
     border: 1px grey solid;
     border-radius: 5px;
     filter: drop-shadow(0px 3px 0px #222222);
+    transition: 0.5s;
     cursor: pointer;
 }
 
@@ -43,6 +44,11 @@
     line-height: 24px;
     text-align: center;
     margin: 0px;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+    cursor: pointer;
 }
 
 .one {
@@ -97,6 +103,26 @@
     transition: 0.5;
     background-color: rgb(255, 217, 0);
     border: 1px  rgb(255, 217, 0) solid;
+}
+
+.flagged {
+    width: 24px;
+    height: 24px;
+    margin: 3px;
+    background-color: lightgrey;
+    color: white;
+    padding: 0px;
+    border: 1px grey solid;
+    border-radius: 5px;
+    filter: drop-shadow(0px 3px 0px #222222);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.flagged p {
+    opacity: 0;
+    color: black;
+    transition: 0.5s;
 }
 
 /* Standard syntax */   
