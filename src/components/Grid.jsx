@@ -6,14 +6,24 @@ class Grid extends Component {
     state = {
         width: 30,
         height: 15,
-        bombCount: 100
+        bombCount: 100,
+        board: [],
+        cells: []
     };
 
+<<<<<<< HEAD
     board = [...Array(this.state.width * this.state.height)];
     children = [...Array(this.state.width * this.state.height)];
+=======
+    board
+>>>>>>> dad111a... refactored cell generation
 
     constructor() {
         super();
+
+        this.state.board = [...Array(this.state.width * this.state.height)];
+        this.state.cells = [...Array(this.state.width * this.state.height)];
+
         let bombsRemaining = this.state.bombCount;
         while (bombsRemaining) {
             let row = Math.floor((Math.random() * this.state.height));
@@ -21,8 +31,8 @@ class Grid extends Component {
 
             let index = row * this.state.width + col;
 
-            if (this.board[index] !== 9) {
-                this.board[index] = 9;
+            if (this.state.board[index] !== 9) {
+                this.state.board[index] = 9;
                 bombsRemaining--;
             }
         }
@@ -30,6 +40,12 @@ class Grid extends Component {
         let x, y;
         for (y = 0; y < this.state.height; y++) {
             for (x = 0; x < this.state.width; x++) {
+<<<<<<< HEAD
+=======
+                //if (this.state.board[y * this.state.width + x] === 9)
+                //continue;
+
+>>>>>>> dad111a... refactored cell generation
                 let topleftIdx = x === 0 || y === 0 ? -1 : (y - 1) * this.state.width + x - 1;
                 let topIdx = y === 0 ? -1 : (y - 1) * this.state.width + x;
                 let topRightIdx = x === this.state.width - 1 || y === 0 ? -1 : (y - 1) * this.state.width + x + 1;
@@ -41,29 +57,43 @@ class Grid extends Component {
 
                 let count = 0;
 
-                count += (this.board[topleftIdx] === 9) * (topleftIdx !== -1)
-                count += (this.board[topIdx] === 9) * (topIdx !== -1)
-                count += (this.board[topRightIdx] === 9) * (topRightIdx !== -1)
-                count += (this.board[rightIdx] === 9) * (rightIdx !== -1)
-                count += (this.board[bottomRightIdx] === 9) * (bottomRightIdx !== -1)
-                count += (this.board[bottomIdx] === 9) * (bottomIdx !== -1)
-                count += (this.board[bottomLeftIdx] === 9) * (bottomLeftIdx !== -1)
-                count += (this.board[leftIdx] === 9) * (leftIdx !== -1)
+                count += (this.state.board[topleftIdx] === 9) * (topleftIdx !== -1);
+                count += (this.state.board[topIdx] === 9) * (topIdx !== -1);
+                count += (this.state.board[topRightIdx] === 9) * (topRightIdx !== -1);
+                count += (this.state.board[rightIdx] === 9) * (rightIdx !== -1);
+                count += (this.state.board[bottomRightIdx] === 9) * (bottomRightIdx !== -1);
+                count += (this.state.board[bottomIdx] === 9) * (bottomIdx !== -1);
+                count += (this.state.board[bottomLeftIdx] === 9) * (bottomLeftIdx !== -1);
+                count += (this.state.board[leftIdx] === 9) * (leftIdx !== -1);
 
+                let idx = y * this.state.width + x;
+
+<<<<<<< HEAD
                 const idx = y * this.state.width + x;
 
                 this.board[idx] = this.board[idx] === 9 ? 9 : count;
                 this.children[idx] = <Cell key={idx} bombs={count} />
+=======
+                this.state.board[idx] = this.state.board[idx] === 9 ? 9 : count;
+                this.state.cells[idx] = <Cell key={idx} bombs={this.state.board[idx]} />
+>>>>>>> dad111a... refactored cell generation
             }
         }
     }
 
     render() {
+<<<<<<< HEAD
         const gridStyle = {
             "grid-template-columns": "auto ".repeat(this.state.width)
         };
 
         return <div style={gridStyle} className="grid" onClick={this.handleClick}>{this.children}</div>
+=======
+        const divstyle = {
+            gridTemplateColumns: 'auto '.repeat(this.state.width),
+        };
+        return <div style={divstyle} className="grid" >{this.state.cells}</div>;
+>>>>>>> dad111a... refactored cell generation
     }
 }
 
